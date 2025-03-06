@@ -4,19 +4,20 @@ import FeelingsEntry from "./FeelingsEntry";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addRecords } from "@/app/stores/moodSlice";
+import { ValidNumber, ValidNumberChoiceOrNull } from "@/types";
 
 const FormSection = () => {
   const [showForm, setShowForm] = useState<boolean>(false);
   function toggleForm(option: boolean) {
     setShowForm(option);
   }
-  const [selectedNumber, setSelectedNumber] = useState<number | null>();
+  const [selectedNumber, setSelectedNumber] =
+    useState<ValidNumberChoiceOrNull>(null);
   const [selectedFeelings, setSelectedFeelings] = useState<string[]>([]);
 
   const dispatch = useDispatch();
 
   const handleAddRecord = () => {
-    console.log(selectedNumber, selectedFeelings);
     if (selectedNumber && selectedFeelings.length > 0) {
       dispatch(
         addRecords({ number: selectedNumber, feelings: selectedFeelings })

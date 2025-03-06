@@ -3,7 +3,7 @@ import NumberBox from "./NumberBox";
 import { useState } from "react";
 import { ValidNumberChoiceOrNull } from "@/types";
 type MoodEntryProps = {
-  selectedNumber: number;
+  selectedNumber: ValidNumberChoiceOrNull;
   setSelectedNumber: React.Dispatch<
     React.SetStateAction<ValidNumberChoiceOrNull>
   >;
