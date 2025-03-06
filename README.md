@@ -9,13 +9,13 @@ Incase you have trouble getting this working with Expo for any reason, I have in
 Once you have cloned this repo, open the directory in your terminal and run
 
 ```bash
-npm i
+npm install
 ```
 
 followed by
 
 ```bash
-npm start
+npm run start
 ```
 
 This will start the expo server.
