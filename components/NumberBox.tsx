@@ -26,7 +26,7 @@ const NumberBox = ({
     <View>
       <Shadow
         distance={3} // offset
-        startColor="#00000020" // y
+        startColor="#00000020"
         offset={[5, 8]} // [x,y]
       >
         <TouchableOpacity
