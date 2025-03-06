@@ -1,4 +1,4 @@
-import { ColourCount, ValidNumber } from "@/types";
+import { ColourCount, RecordObject, ValidNumber } from "@/types";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialColourCount = {
@@ -8,15 +8,21 @@ const initialColourCount = {
   green: 0,
   aquamarine: 0,
 };
-type RecordObject = {
-  colourCount: ColourCount;
-  title: string;
-  overallCount: number;
-};
+
+import testData from "./testData";
+const { testRecordData, testOrderedData, testHighestCount } = testData;
 // Initial state
 const initialState: {
-  [key: string]: RecordObject;
-} = {};
+  records: {
+    [key: string]: RecordObject;
+  };
+  highestCount: number;
+  orderedData: RecordObject[];
+} = {
+  highestCount: testHighestCount,
+  records: testRecordData,
+  orderedData: testOrderedData,
+};
 
 function getColour(number: ValidNumber) {
   if (number === 1 || number === 2) return "red";
@@ -32,27 +38,42 @@ const moodSlice = createSlice({
   reducers: {
     addRecords: (state, action) => {
       const number = action.payload.number as ValidNumber;
-      const feelings = action.payload.feelings;
+      const feelings: string[] = action.payload.feelings;
       const colour = getColour(number);
 
       feelings.forEach((feeling: string) => {
-        if (!state[feeling]) {
-          state[feeling] = {
+        if (!state.records[feeling]) {
+          state.records[feeling] = {
             colourCount: { ...initialColourCount },
             title: feeling,
             overallCount: 0,
           };
         }
 
+        const stateRecord = state.records[feeling];
         if (colour) {
-          state[feeling]["colourCount"][colour]++;
-          state[feeling]["overallCount"]++;
+          stateRecord["colourCount"][colour]++;
+          stateRecord["overallCount"]++;
         }
       });
-      console.log(state);
+      // calculate the highest record for the styling calculations
+      const highestCount = getHighestRecord(Object.values(state.records));
+      state.highestCount = highestCount;
+
+      // sort once records are updated
+      state.orderedData = Object.values(state.records).sort(
+        (a, b) => b.overallCount - a.overallCount
+      );
     },
   },
 });
+
+function getHighestRecord(records: RecordObject[]): number {
+  if (records.length === 0) return 0;
+  const overallCounts = records.map((x) => x.overallCount);
+  overallCounts.sort((a, b) => a - b);
+  return overallCounts[overallCounts.length - 1];
+}
 
 export const { addRecords } = moodSlice.actions;
 
