@@ -24,6 +24,7 @@ const FormSection = () => {
       );
       setSelectedNumber(null);
       setSelectedFeelings([]);
+      setShowForm(false);
     }
   };
 
