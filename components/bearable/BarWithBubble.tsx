@@ -8,14 +8,14 @@ type BarWithBubbleProps = {
   highestCount: number;
 };
 const BarWithBubble = ({ record, highestCount }: BarWithBubbleProps) => {
-  const FULL_LENGTH = 300;
   const { overallCount, title } = record;
 
-  const proportionalLength = (overallCount / highestCount) * FULL_LENGTH;
+  const proportionalLength = (overallCount / highestCount) * 100;
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
-      <View style={styles.barContainer}>
+      <View style={[styles.barContainer, { width: `${proportionalLength}%` }]}>
         <ProportionalBar record={record} />
         <View style={styles.bubble}>
           <Text style={styles.bubbleText}>{overallCount}</Text>
@@ -29,12 +29,13 @@ const styles = StyleSheet.create({
   barContainer: {
     flexDirection: "row",
     alignItems: "center",
-    flex: 1,
+    height: 40,
   },
   container: {
     marginVertical: 10,
     flex: 1,
     flexDirection: "column",
+    justifyContent: "center",
   },
   title: {
     fontSize: 16,
@@ -42,12 +43,13 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   bar: {
-    height: 20,
-    borderRadius: 10,
+    height: 10,
+    borderRadius: 5,
     overflow: "hidden",
   },
   bubble: {
-    width: 40,
+    marginLeft: -5,
+    width: 60,
     height: 40,
     borderRadius: 15,
     borderWidth: 1,
@@ -58,7 +60,8 @@ const styles = StyleSheet.create({
   },
   bubbleText: {
     color: "#000000",
-    fontWeight: "bold",
+    fontWeight: "900",
+    fontSize: 18,
   },
 });
 

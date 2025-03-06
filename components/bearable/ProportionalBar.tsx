@@ -42,8 +42,9 @@ const styles = StyleSheet.create({
   },
   container: {
     marginBottom: 16,
-
-    flex: 1,
+    width: "85%",
+    height: "60%",
+    marginTop: 15,
   },
 
   bar: {

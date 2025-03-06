@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   dataSection: {
     flex: 1,
     flexDirection: "column",
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
   },
 });
 export default BarSection;

@@ -29,12 +29,14 @@ const FormSection = () => {
 
   return (
     <View style={styles.formSection}>
-      <Text>How are you feeling?</Text>
-      <MoodEntry
-        toggleForm={toggleForm}
-        setSelectedNumber={setSelectedNumber}
-        selectedNumber={selectedNumber}
-      />
+      <Text style={styles.headerText}>How are you feeling?</Text>
+      <View style={styles.wrapper}>
+        <MoodEntry
+          toggleForm={toggleForm}
+          setSelectedNumber={setSelectedNumber}
+          selectedNumber={selectedNumber}
+        />
+      </View>
       {showForm === true ? (
         <FeelingsEntry
           selectedFeelings={selectedFeelings}
@@ -47,6 +49,11 @@ const FormSection = () => {
 };
 
 const styles = StyleSheet.create({
+  wrapper: {
+    marginBottom: 30,
+    flex: 1,
+  },
+  headerText: { textAlign: "center", fontWeight: "bold", marginBottom: 10 },
   formSection: {
     flex: 1,
     flexDirection: "column",
