@@ -2,24 +2,21 @@ import { StyleSheet, View } from "react-native";
 import BarWithBubble from "./BarWithBubble";
 import { useSelector } from "react-redux";
 import { AppStore, useAppSelector } from "@/app/stores/store";
+import { useMemo } from "react";
 
 const BarSection = () => {
-  const data = useAppSelector((state) => state.record);
-
-  const sortedData = Object.values(data).sort((a, b) =>
-    a.overallCount < b.overallCount ? 0 : 1
+  const { highestCount, records, orderedData } = useAppSelector(
+    (state) => state.record
   );
+
   return (
     <View style={styles.dataSection}>
-      {sortedData.map((data) => {
-        const { title, colourCount, overallCount } = data;
-
+      {orderedData.map((record) => {
         return (
           <BarWithBubble
-            key={title}
-            title={title}
-            values={colourCount}
-            overallCount={overallCount}
+            key={record.title}
+            record={record}
+            highestCount={highestCount}
           />
         );
       })}

@@ -1,17 +1,22 @@
-import { ColourCount } from "@/types";
+import { ColourCount, RecordObject } from "@/types";
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import ProportionalBar from "./ProportionalBar";
 
 type BarWithBubbleProps = {
-  title: string;
-  values: ColourCount;
-  overallCount: number;
+  record: RecordObject;
+  highestCount: number;
 };
-const BarWithBubble = ({ title, values, overallCount }: BarWithBubbleProps) => {
+const BarWithBubble = ({ record, highestCount }: BarWithBubbleProps) => {
+  const FULL_LENGTH = 300;
+  const { overallCount, title } = record;
+
+  const proportionalLength = (overallCount / highestCount) * FULL_LENGTH;
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
-      <View style={styles.bar}>
+      <View style={styles.barContainer}>
+        <ProportionalBar record={record} />
         <View style={styles.bubble}>
           <Text style={styles.bubbleText}>{overallCount}</Text>
         </View>
@@ -21,8 +26,15 @@ const BarWithBubble = ({ title, values, overallCount }: BarWithBubbleProps) => {
 };
 
 const styles = StyleSheet.create({
+  barContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    flex: 1,
+  },
   container: {
     marginVertical: 10,
+    flex: 1,
+    flexDirection: "column",
   },
   title: {
     fontSize: 16,
@@ -31,19 +43,15 @@ const styles = StyleSheet.create({
   },
   bar: {
     height: 20,
-    backgroundColor: "#e0e0e0",
     borderRadius: 10,
-    flexDirection: "row",
-    justifyContent: "flex-end",
-    alignItems: "center",
-    paddingRight: 10,
+    overflow: "hidden",
   },
   bubble: {
-    width: 60,
+    width: 40,
     height: 40,
-    borderRadius: 17,
-    borderBlockColor: "#000000",
+    borderRadius: 15,
     borderWidth: 1,
+    borderColor: "#000000",
     backgroundColor: "#ffffff",
     justifyContent: "center",
     alignItems: "center",
