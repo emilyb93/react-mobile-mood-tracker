@@ -1,12 +1,20 @@
 import { StyleSheet, View } from "react-native";
 import NumberBox from "./NumberBox";
 import { useState } from "react";
-type ValidNumberChoiceOrNull = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | null;
-type MoodEntryProps = { toggleForm: (option: boolean) => void };
-const MoodEntry = ({ toggleForm }: MoodEntryProps) => {
-  const [selectedNumber, setSelectedNumber] =
-    useState<ValidNumberChoiceOrNull>(null);
+import { ValidNumberChoiceOrNull } from "@/types";
+type MoodEntryProps = {
+  selectedNumber: number;
+  setSelectedNumber: React.Dispatch<
+    React.SetStateAction<ValidNumberChoiceOrNull>
+  >;
+  toggleForm: (option: boolean) => void;
+};
 
+const MoodEntry = ({
+  toggleForm,
+  setSelectedNumber,
+  selectedNumber,
+}: MoodEntryProps) => {
   function changeSelectedNumberTo(number: ValidNumberChoiceOrNull) {
     return () => {
       toggleForm(true);

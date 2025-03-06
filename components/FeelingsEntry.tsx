@@ -1,20 +1,53 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
+import FeelingButton from "./FeelingButton";
 
-const FeelingsEntry = () => {
-  const feelings = ["Meh", "Content", "Happy", "Frustrated"];
+type FeelingsEntryProps = {
+  handleAddRecord: () => void;
+  selectedFeelings: string[];
+  setSelectedFeelings: React.Dispatch<React.SetStateAction<string[]>>;
+};
+
+const FeelingsEntry = ({
+  handleAddRecord,
+  selectedFeelings,
+  setSelectedFeelings,
+}: FeelingsEntryProps) => {
+  const feelings = [
+    { id: 0, label: "Meh" },
+    { id: 1, label: "Content" },
+    { id: 2, label: "Happy" },
+    { id: 3, label: "Frustrated" },
+  ];
+
+  function handleFeelingsPress(feeling: string) {
+    setSelectedFeelings((currFeelings) => {
+      const copyFeelings = [...currFeelings];
+      const feelingIndex = copyFeelings.indexOf(feeling);
+      if (feelingIndex === -1) {
+        copyFeelings.push(feeling);
+      } else {
+        copyFeelings.splice(feelingIndex, 1);
+      }
+
+      return copyFeelings;
+    });
+  }
 
   return (
     <>
       <View style={styles.feelingsContainer}>
-        {feelings.map((feeling) => {
+        {feelings.map(({ id, label }) => {
           return (
-            <View style={styles.textContainer}>
-              <Text style={styles.feelingsText}>{feeling}</Text>;
-            </View>
+            <FeelingButton
+              isSelected={selectedFeelings.indexOf(label) !== -1}
+              handleFeelingsPress={handleFeelingsPress}
+              id={id}
+              label={label}
+            />
           );
         })}
       </View>
-      <Pressable style={styles.doneButton}>
+      <Pressable onPress={handleAddRecord} style={styles.doneButton}>
         <Text style={styles.doneText}>Done</Text>
       </Pressable>
     </>
@@ -22,9 +55,6 @@ const FeelingsEntry = () => {
 };
 
 const styles = StyleSheet.create({
-  feelingsText: {
-    fontWeight: "600",
-  },
   doneText: {
     fontWeight: "600",
     color: "#fff",
@@ -47,7 +77,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     marginVertical: 3,
     marginHorizontal: 2,
-    backgroundColor: "rgb(219, 245, 245)",
+
     borderRadius: 15,
     borderWidth: 1,
 
