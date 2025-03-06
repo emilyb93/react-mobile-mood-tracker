@@ -1,10 +1,6 @@
+import { ColourCount, ValidNumber } from "@/types";
 import { createSlice } from "@reduxjs/toolkit";
 
-type ValidColour = "red" | "orange" | "yellow" | "green" | "aquamarine";
-type ValidNumber = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
-type ColourCount = {
-  [K in ValidColour]: number;
-};
 const initialColourCount = {
   red: 0,
   orange: 0,
@@ -12,9 +8,14 @@ const initialColourCount = {
   green: 0,
   aquamarine: 0,
 };
+type RecordObject = {
+  colourCount: ColourCount;
+  title: string;
+  overallCount: number;
+};
 // Initial state
 const initialState: {
-  [key: string]: ColourCount;
+  [key: string]: RecordObject;
 } = {};
 
 function getColour(number: ValidNumber) {
@@ -36,11 +37,16 @@ const moodSlice = createSlice({
 
       feelings.forEach((feeling: string) => {
         if (!state[feeling]) {
-          state[feeling] = { ...initialColourCount };
+          state[feeling] = {
+            colourCount: { ...initialColourCount },
+            title: feeling,
+            overallCount: 0,
+          };
         }
 
         if (colour) {
-          state[feeling][colour]++;
+          state[feeling]["colourCount"][colour]++;
+          state[feeling]["overallCount"]++;
         }
       });
       console.log(state);

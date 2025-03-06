@@ -39,6 +39,7 @@ const FeelingsEntry = ({
         {feelings.map(({ id, label }) => {
           return (
             <FeelingButton
+              key={id}
               isSelected={selectedFeelings.indexOf(label) !== -1}
               handleFeelingsPress={handleFeelingsPress}
               id={id}
