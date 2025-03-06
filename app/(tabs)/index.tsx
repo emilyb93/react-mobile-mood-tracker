@@ -1,31 +1,24 @@
-import { StyleSheet } from 'react-native';
+import BarSection from "@/components/BarSection";
+import BarWithBubble from "@/components/BarWithBubble";
+import FeelingsEntry from "@/components/FeelingsEntry";
+import FormSection from "@/components/FormSection";
+import MoodEntry from "@/components/MoodEntry";
+import NumberBox from "@/components/NumberBox";
+import { useState } from "react";
+import { Text, View, StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-import EditScreenInfo from '@/components/EditScreenInfo';
-import { Text, View } from '@/components/Themed';
-
-export default function TabOneScreen() {
+const MoodScreen = () => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/index.tsx" />
-    </View>
+    <SafeAreaView style={styles.container}>
+      <FormSection />
+      <BarSection />
+    </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
+  container: { margin: 10, flex: 1 },
 });
+
+export default MoodScreen;
