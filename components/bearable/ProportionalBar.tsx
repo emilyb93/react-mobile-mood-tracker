@@ -19,6 +19,7 @@ const ProportionalBar = ({ record }: ProportionalBarProps) => {
         {orderedColours.map(([colour, count]) => {
           // [green,5] [red, 3] etc
           if (count > 0) {
+            // creating proportional length via flex
             const flexValue = count / overallCount;
             return (
               <BarSegment

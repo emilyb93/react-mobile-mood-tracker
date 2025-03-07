@@ -1,5 +1,5 @@
 import { colours } from "@/constants";
-import { SetStateAction } from "react";
+import { SetStateAction, useMemo } from "react";
 import {
   StyleSheet,
   View,
@@ -22,7 +22,7 @@ const NumberBox = ({
   selectedNumber,
   setSelectedNumber,
 }: NumberBoxProps) => {
-  const isSelected = number === selectedNumber;
+  const isSelected = useMemo(() => number === selectedNumber, [selectedNumber]);
   return (
     <View>
       <Shadow

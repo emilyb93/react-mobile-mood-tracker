@@ -1,5 +1,6 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import FeelingButton from "./FeelingButton";
+import feelings from "@/constants/Feelings";
 
 type FeelingsEntryProps = {
   handleAddRecord: () => void;
@@ -12,13 +13,6 @@ const FeelingsEntry = ({
   selectedFeelings,
   setSelectedFeelings,
 }: FeelingsEntryProps) => {
-  const feelings = [
-    { id: 0, label: "Meh" },
-    { id: 1, label: "Content" },
-    { id: 2, label: "Happy" },
-    { id: 3, label: "Frustrated" },
-  ];
-
   function handleFeelingsPress(feeling: string) {
     setSelectedFeelings((currFeelings) => {
       const copyFeelings = [...currFeelings];

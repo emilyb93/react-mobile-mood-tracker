@@ -8,16 +8,16 @@ import { ValidNumber, ValidNumberChoiceOrNull } from "@/types";
 
 const FormSection = () => {
   const [showForm, setShowForm] = useState<boolean>(false);
-  function toggleForm(option: boolean) {
-    setShowForm(option);
-  }
   const [selectedNumber, setSelectedNumber] =
     useState<ValidNumberChoiceOrNull>(null);
   const [selectedFeelings, setSelectedFeelings] = useState<string[]>([]);
 
   const dispatch = useDispatch();
 
-  const handleAddRecord = () => {
+  function toggleForm(option: boolean) {
+    setShowForm(option);
+  }
+  function handleAddRecord() {
     if (selectedNumber && selectedFeelings.length > 0) {
       dispatch(
         addRecords({ number: selectedNumber, feelings: selectedFeelings })
@@ -26,7 +26,7 @@ const FormSection = () => {
       setSelectedFeelings([]);
       setShowForm(false);
     }
-  };
+  }
 
   return (
     <View style={styles.formSection}>
