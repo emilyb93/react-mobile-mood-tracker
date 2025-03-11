@@ -5,21 +5,21 @@ import { AppStore, useAppSelector } from "@/app/stores/store";
 import { useMemo } from "react";
 
 const BarSection = () => {
-  const { highestCount, records, orderedData } = useAppSelector(
-    (state) => state.record
-  );
+  const { highestCount, records } = useAppSelector((state) => state.record);
 
   return (
     <View style={styles.dataSection}>
-      {orderedData.map((record) => {
-        return (
-          <BarWithBubble
-            key={record.title}
-            record={record}
-            highestCount={highestCount}
-          />
-        );
-      })}
+      {Object.values(records)
+        .sort((a, b) => b.overallCount - a.overallCount)
+        .map((record) => {
+          return (
+            <BarWithBubble
+              key={record.title}
+              record={record}
+              highestCount={highestCount}
+            />
+          );
+        })}
     </View>
   );
 };

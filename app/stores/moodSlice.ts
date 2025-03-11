@@ -10,6 +10,7 @@ const initialColourCount = {
 };
 
 import testData from "./testData";
+import { getColour, getHighestRecord } from "./utils";
 const { testRecordData, testOrderedData, testHighestCount } = testData;
 // Initial state
 const initialState: {
@@ -17,20 +18,10 @@ const initialState: {
     [key: string]: RecordObject;
   };
   highestCount: number;
-  orderedData: RecordObject[];
 } = {
   highestCount: testHighestCount,
   records: testRecordData,
-  orderedData: testOrderedData,
 };
-
-export function getColour(number: ValidNumber) {
-  if (number === 1 || number === 2) return "red";
-  if (number === 3 || number === 4) return "orange";
-  if (number === 5 || number === 6) return "yellow";
-  if (number === 7 || number === 8) return "green";
-  if (number === 9 || number === 10) return "aquamarine";
-}
 
 const moodSlice = createSlice({
   name: "MoodRecords",
@@ -59,21 +50,9 @@ const moodSlice = createSlice({
       // calculate the highest record for the styling calculations
       const highestCount = getHighestRecord(Object.values(state.records));
       state.highestCount = highestCount;
-
-      // sort once records are updated
-      state.orderedData = Object.values(state.records).sort(
-        (a, b) => b.overallCount - a.overallCount
-      );
     },
   },
 });
-
-function getHighestRecord(records: RecordObject[]): number {
-  if (records.length === 0) return 0;
-  const overallCounts = records.map((x) => x.overallCount);
-  overallCounts.sort((a, b) => a - b);
-  return overallCounts[overallCounts.length - 1];
-}
 
 export const { addRecords } = moodSlice.actions;
 
