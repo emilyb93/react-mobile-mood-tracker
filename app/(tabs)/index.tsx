@@ -1,9 +1,9 @@
-import BarSection from "@/components/bearable/BarSection";
-import BarWithBubble from "@/components/bearable/BarWithBubble";
-import FeelingsEntry from "@/components/bearable/FeelingsEntry";
-import FormSection from "@/components/bearable/FormSection";
-import MoodEntry from "@/components/bearable/MoodEntry";
-import NumberBox from "@/components/bearable/NumberBox";
+import BarSection from "@/components/organisms/BarSection";
+import BarWithBubble from "@/components/molecules/BarWithBubble";
+import FeelingsEntry from "@/components/molecules/FeelingsEntry";
+import FormSection from "@/components/organisms/FormSection";
+import MoodEntry from "@/components/molecules/MoodEntry";
+import NumberBox from "@/components/atoms/NumberBox";
 import { useState } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";

@@ -1,5 +1,5 @@
 import { StyleSheet, View } from "react-native";
-import NumberBox from "./NumberBox";
+import NumberBox from "../atoms/NumberBox";
 import { useState } from "react";
 import { ValidNumberChoiceOrNull } from "@/types";
 type MoodEntryProps = {

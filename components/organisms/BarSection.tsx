@@ -1,5 +1,5 @@
 import { StyleSheet, View } from "react-native";
-import BarWithBubble from "./BarWithBubble";
+import BarWithBubble from "@/components/molecules/BarWithBubble";
 import { useSelector } from "react-redux";
 import { AppStore, useAppSelector } from "@/app/stores/store";
 import { useMemo } from "react";

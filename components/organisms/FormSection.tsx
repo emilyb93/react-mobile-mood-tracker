@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
-import MoodEntry from "./MoodEntry";
-import FeelingsEntry from "./FeelingsEntry";
+import MoodEntry from "@/components/molecules/MoodEntry";
+import FeelingsEntry from "@/components/molecules/FeelingsEntry";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addRecords } from "@/app/stores/moodSlice";

@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import BarSegment from "./BarSegment";
+import BarSegment from "../atoms/BarSegment";
 import { ColourCount, RecordObject, ValidColour } from "@/types";
 
 type ProportionalBarProps = {

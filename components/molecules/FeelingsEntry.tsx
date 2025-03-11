@@ -1,5 +1,5 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import FeelingButton from "./FeelingButton";
+import FeelingButton from "../atoms/FeelingButton";
 import feelings from "@/constants/Feelings";
 
 type FeelingsEntryProps = {
