@@ -24,7 +24,7 @@ const initialState: {
   orderedData: testOrderedData,
 };
 
-function getColour(number: ValidNumber) {
+export function getColour(number: ValidNumber) {
   if (number === 1 || number === 2) return "red";
   if (number === 3 || number === 4) return "orange";
   if (number === 5 || number === 6) return "yellow";

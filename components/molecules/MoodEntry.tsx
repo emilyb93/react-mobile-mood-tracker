@@ -1,7 +1,7 @@
 import { StyleSheet, View } from "react-native";
 import NumberBox from "../atoms/NumberBox";
 import { useState } from "react";
-import { ValidNumberChoiceOrNull } from "@/types";
+import { ValidNumber, ValidNumberChoiceOrNull } from "@/types";
 type MoodEntryProps = {
   selectedNumber: ValidNumberChoiceOrNull;
   setSelectedNumber: React.Dispatch<
@@ -23,75 +23,27 @@ const MoodEntry = ({
   }
   return (
     <View style={styles.moodContainer}>
-      <View>
-        <NumberBox
-          number={1}
-          fontColour={"red"}
-          selectedNumber={selectedNumber as number}
-          setSelectedNumber={changeSelectedNumberTo(1)}
-        />
-        <NumberBox
-          number={2}
-          fontColour={"red"}
-          selectedNumber={selectedNumber as number}
-          setSelectedNumber={changeSelectedNumberTo(2)}
-        />
+      <View style={styles.rowContainer}>
+        {[1, 3, 5, 7, 9].map((number) => {
+          return (
+            <NumberBox
+              number={number as ValidNumber}
+              selectedNumber={selectedNumber as number}
+              setSelectedNumber={changeSelectedNumberTo(number as ValidNumber)}
+            />
+          );
+        })}
       </View>
-      <View>
-        <NumberBox
-          number={3}
-          fontColour={"orange"}
-          selectedNumber={selectedNumber as number}
-          setSelectedNumber={changeSelectedNumberTo(3)}
-        />
-        <NumberBox
-          number={4}
-          fontColour={"orange"}
-          selectedNumber={selectedNumber as number}
-          setSelectedNumber={changeSelectedNumberTo(4)}
-        />
-      </View>
-      <View>
-        <NumberBox
-          number={5}
-          fontColour={"yellow"}
-          selectedNumber={selectedNumber as number}
-          setSelectedNumber={changeSelectedNumberTo(5)}
-        />
-        <NumberBox
-          number={6}
-          fontColour={"yellow"}
-          selectedNumber={selectedNumber as number}
-          setSelectedNumber={changeSelectedNumberTo(6)}
-        />
-      </View>
-      <View>
-        <NumberBox
-          number={7}
-          fontColour={"green"}
-          selectedNumber={selectedNumber as number}
-          setSelectedNumber={changeSelectedNumberTo(7)}
-        />
-        <NumberBox
-          number={8}
-          fontColour={"green"}
-          selectedNumber={selectedNumber as number}
-          setSelectedNumber={changeSelectedNumberTo(8)}
-        />
-      </View>
-      <View>
-        <NumberBox
-          number={9}
-          fontColour={"aquamarine"}
-          selectedNumber={selectedNumber as number}
-          setSelectedNumber={changeSelectedNumberTo(9)}
-        />
-        <NumberBox
-          number={10}
-          fontColour={"aquamarine"}
-          selectedNumber={selectedNumber as number}
-          setSelectedNumber={changeSelectedNumberTo(10)}
-        />
+      <View style={styles.rowContainer}>
+        {[2, 4, 6, 8, 10].map((number) => {
+          return (
+            <NumberBox
+              number={number as ValidNumber}
+              selectedNumber={selectedNumber as number}
+              setSelectedNumber={changeSelectedNumberTo(number as ValidNumber)}
+            />
+          );
+        })}
       </View>
     </View>
   );
@@ -99,8 +51,13 @@ const MoodEntry = ({
 
 const styles = StyleSheet.create({
   moodContainer: {
+    flexDirection: "column",
+  },
+  rowContainer: {
     flex: 1,
     flexDirection: "row",
+    justifyContent: "center",
+    marginBottom: 5,
   },
 });
 

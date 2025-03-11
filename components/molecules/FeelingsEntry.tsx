@@ -66,17 +66,7 @@ const styles = StyleSheet.create({
   feelingsContainer: {
     flex: 1,
     flexDirection: "row",
-  },
-  textContainer: {
-    paddingVertical: 5,
-    paddingHorizontal: 10,
-    marginVertical: 3,
-    marginHorizontal: 2,
-
-    borderRadius: 15,
-    borderWidth: 1,
-
-    alignSelf: "flex-start",
+    marginTop: 10,
   },
 });
 export default FeelingsEntry;

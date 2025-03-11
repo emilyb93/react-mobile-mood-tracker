@@ -1,4 +1,6 @@
+import { getColour } from "@/app/stores/moodSlice";
 import { colours } from "@/constants";
+import { ValidNumber, ValidNumberChoiceOrNull } from "@/types";
 import { SetStateAction, useMemo } from "react";
 import {
   StyleSheet,
@@ -11,17 +13,17 @@ import { Shadow } from "react-native-shadow-2";
 type FontColours = keyof typeof colours;
 
 type NumberBoxProps = {
-  number: number;
-  fontColour: FontColours;
+  number: ValidNumber;
   selectedNumber: number;
   setSelectedNumber: () => void;
 };
+
 const NumberBox = ({
   number,
-  fontColour,
   selectedNumber,
   setSelectedNumber,
 }: NumberBoxProps) => {
+  const fontColour = getColour(number);
   const isSelected = useMemo(() => number === selectedNumber, [selectedNumber]);
   return (
     <View>
@@ -33,14 +35,20 @@ const NumberBox = ({
         <TouchableOpacity
           style={[
             styles.box,
-            { backgroundColor: isSelected ? colours[fontColour] : "#fff" },
+            {
+              backgroundColor: isSelected
+                ? colours[fontColour as FontColours]
+                : "#fff",
+            },
           ]}
           onPress={setSelectedNumber}
         >
           <Text
             style={[
               styles.number,
-              { color: isSelected ? "#fff" : colours[fontColour] },
+              {
+                color: isSelected ? "#fff" : colours[fontColour as FontColours],
+              },
             ]}
           >
             {number}
