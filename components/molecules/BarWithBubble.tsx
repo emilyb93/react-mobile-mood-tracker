@@ -42,11 +42,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 5,
   },
-  bar: {
-    height: 10,
-    borderRadius: 5,
-    overflow: "hidden",
-  },
   bubble: {
     marginLeft: -5,
     width: 60,

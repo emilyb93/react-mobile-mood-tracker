@@ -42,17 +42,15 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   container: {
-    marginBottom: 16,
     width: "85%",
     height: "60%",
-    marginTop: 15,
+    justifyContent: "center",
   },
 
   bar: {
-    height: 20,
-    flex: 1,
+    height: 16,
     flexDirection: "row",
-    borderRadius: 10,
+    borderRadius: 5,
     overflow: "hidden",
   },
 });

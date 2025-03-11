@@ -62,11 +62,15 @@ const styles = StyleSheet.create({
     backgroundColor: "#3BB7B0",
     borderRadius: 50,
     alignSelf: "center",
+    justifyContent: "center",
+    borderColor: "#19345D",
+    borderWidth: 1,
   },
   feelingsContainer: {
     flex: 1,
     flexDirection: "row",
     marginTop: 10,
+    justifyContent: "center",
   },
 });
 export default FeelingsEntry;
