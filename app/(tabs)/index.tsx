@@ -1,12 +1,14 @@
 import MoodScreen from "@/components/screens/MoodScreen";
 import { useState } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const App = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <MoodScreen />
+      <ScrollView>
+        <MoodScreen />
+      </ScrollView>
     </SafeAreaView>
   );
 };
